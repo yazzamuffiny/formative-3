@@ -27,9 +27,9 @@ const Header = () => {
           </li>
         </ul>
 
-        <div id='menu-container'>
-          <button id='menu-button' className='show-mobile-menu-button' onClick={toggleMobileMenu}>
-            <BsList id='hamburger-icon'/>
+        <div id='menuContainer'>
+          <button id='menuButton' className='show-mobile-menu-button' onClick={toggleMobileMenu}>
+            <BsList id='hamburgerIcon'/>
           </button>
         </div>
       </div>

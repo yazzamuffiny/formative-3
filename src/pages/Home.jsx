@@ -21,6 +21,16 @@ import { useArticlesContext } from '../hooks/useArticlesContext'
 
 const apiKey = import.meta.env.VITE_NEWS_API_KEY
 
+// //section colors
+// const categoryColors = {
+//     business: "#f5c505",
+//     entertainment: "#f50591",
+//     health: "#f50505",
+//     science: "#41f505",
+//     sports: "#fc6203",
+//     technology:"#8505f5"
+//   };
+
 const Home = () => {
     //state for category
     const [category, setCategory] = useState('')
@@ -40,7 +50,7 @@ const Home = () => {
         setLoading(true);
         //fetch function
         const fetchArticles = async() => {
-          await axios.get(`https://newsapi.org/v2/top-headlines?language=en&category=${category}&q=${query}&apiKey=${apiKey}`)
+          await axios.get(`https://newsapi.org/v2/top-headlines?language=en&category=${category}&apiKey=${apiKey}`)
             .then(response => {
               console.log(response.data.articles);
               // setArticles(response.data.articles);
@@ -67,7 +77,10 @@ const Home = () => {
         const mappedArticles = articles.map((article, index) => {
           //map return
           return (
-            <div key={index} className='article'>
+            <div 
+            key={index}
+            className="article"
+            >
               <h4>{article.title}</h4>
               <p className="author">{article.author}</p>
               <button onClick={() => handleReadMoreClick(index)} className="see-more">See More</button>
@@ -86,16 +99,7 @@ const Home = () => {
 
       return (
         <>
-            <div className='search'>
-                <label htmlFor='query'>Search:</label>
-                <input type='text'
-                name='query' 
-                id='query'
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                />
-            </div>
-            <Tabs selectedIndex={tabIndex} forceRenderTabPanel onSelect={(index) => setTabIndex(index)}>
+            <Tabs className="tabs" selectedIndex={tabIndex} forceRenderTabPanel onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                     <Tab onClick={() => setCategory('')}><FaNewspaper /> All</Tab>
                     <Tab onClick={() => setCategory('business')}> <MdBusinessCenter /> Business</Tab>
@@ -107,7 +111,7 @@ const Home = () => {
                 </TabList>
 
                 <TabPanel>
-                    <h1>All News</h1>
+                    <h1 className='category-header'>All News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -119,7 +123,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Business News</h1>
+                    <h1 className='category-header'>Business News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -131,7 +135,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Entertainment News</h1>
+                    <h1 className='category-header'>Entertainment News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -143,7 +147,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Health News</h1>
+                    <h1 className='category-header'>Health News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -155,7 +159,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Science News</h1>
+                    <h1 className='category-header'>Science News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -167,7 +171,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Sports News</h1>
+                    <h1 className='category-header'>Sports News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
@@ -179,7 +183,7 @@ const Home = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h1>Technology News</h1>
+                    <h1 className='category-header'>Technology News</h1>
                     <div className="article-container">
                         {loading ? (
                         <div>Loading...</div>
